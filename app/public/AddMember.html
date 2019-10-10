@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Add New Member</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="css\style.css">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #B22222">
+  <a class="navbar-brand" href="#">Navigation</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Add User</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Reports</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div>
+<!--List of Members (Change to an auto center command)-->
+  <div class="mx-auto" style="width:200px;">
+    <h3>Member List</h3>
+  </div>
+
+  <table class="table table-sm table-hover">
+    <thead>
+      <tr>
+        <th>RadioNo</th>
+        <th>Position</th>
+        <th>First</th>
+        <th>Last</th>
+        <th>Certification</th>
+        <th>CellNo</th>
+        <th>Station</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+<!--List of Members (Change to an auto center command)-->
+  <div class="mx-auto" style="width:200px;">
+    <h3>Certification List</h3>
+  </div>
+
+  <table class="table table-sm table-hover">
+    <thead>
+      <tr>
+        <th>Certification Name</th>
+        <th>Description</th>
+        <th>Standard Expiry</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div>
+<!-- Add User Heading (Change to an auto center command)-->
+  <div class="mx-auto" style="width:200px;">
+    <h3>Add User</h3>
+  </div>
+
+<!-- Add User Form -->
+<div>
+  <form>
+    <div class="row">
+    <div class="form-group col-md-4">
+      <label for="FirstName">First Name</label>
+      <input type="text" class="form-control" id="FirstName" aria-describedby="First" placeholder="First Name">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="LastName">Last Name</label>
+      <input type="text" class="form-control" id="LastName" aria-describedby="Last" placeholder="Last Name">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="Dob">Date of Birth</label>
+      <input type="date" class="form-control" id="Dob" aria-describedby="Dob" placeholder="2001-12-13">
+    </div>
+    </div>
+    <div class="form-group">
+      <label for="Sab">Sex at Birth</label>
+      <input type="text" class="form-control" id="Sab" aria-describedby="Sab" placeholder="M|F">
+    </div>
+    <div class="form-group">
+      <label for="MobilePhone">Mobile Number</label>
+      <input type="tel" class="form-control" id="MobilePhone" aria-describedby="MobilePhone" placeholder="Mobile Number">
+    </div>
+    <div class="form-group">
+      <label for="WorkPhone">Work Number</label>
+      <input type="tel" class="form-control" id="WorkPhone" aria-describedby="WorkPhone" placeholder="Work Number">
+    </div>
+    <div class="form-group">
+      <label for="Email">Email Address</label>
+      <input type="email" class="form-control" id="Email" aria-describedby="Email" placeholder="Email Address">
+    </div>
+    <div class="form-group">
+      <label for="Street">Street Address</label>
+      <input type="text" class="form-control" id="Street" aria-describedby="Street" placeholder="Street Address">
+    </div>
+    <div class="form-group">
+      <label for="City">City</label>
+      <input type="text" class="form-control" id="City" aria-describedby="City" placeholder="City">
+    </div>
+    <div class="form-group">
+      <label for="State">State</label>
+      <input type="text" class="form-control" id="State" aria-describedby="State" placeholder="State">
+    </div>
+    <div class="form-group">
+      <label for="Zip">Zip Code</label>
+      <input type="text" class="form-control" id="Zip" aria-describedby="Zip" placeholder="Zip">
+    </div>
+    <div class="form-group">
+      <label for="StationNo">Station Number</label>
+      <input type="text" class="form-control" id="StationNo" aria-describedby="StationNo" placeholder="Station Number">
+    </div>
+    <div class="form-group">
+      <label for="StationName">Station Name</label>
+      <input type="text" class="form-control" id="StationName" aria-describedby="StationName" placeholder="Station Name">
+    </div>
+    <div class="form-group">
+      <label for="Region">Region</label>
+      <input type="text" class="form-control" id="Region" aria-describedby="Region" placeholder="Region">
+    </div>
+    <div class="form-group">
+      <label for="RadioNo">Radio Number</label>
+      <input type="text" class="form-control" id="RadioNo" aria-describedby="RadioNo" placeholder="Radio Number">
+    </div>
+    <div class="form-group">
+      <label for="Position">Position</label>
+      <input type="text" class="form-control" id="Position" aria-describedby="Position" placeholder="Position">
+    </div>
+    <div class="form-group">
+      <label for="Certification">Position</label>
+      <input type="text" class="form-control" id="Position" aria-describedby="Position" placeholder="Position">
+    </div>
+    <div class="form-group">
+      <label for="StartDate">Start Date</label>
+      <input type="date" class="form-control" id="StartDate" aria-describedby="StartDate" placeholder="2019-01-01">
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="ActiveCheck">
+      <label class="form-check-label" for="ActiveCheck">Active?</label>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="EmployeeCheck">
+      <label class="form-check-label" for="EmployeeCheck">Employee?</label>
+    </div>
+    <button type="submit" class="btn">Create New User</button>
+  </form>
+</div>
+</div>
