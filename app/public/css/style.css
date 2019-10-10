@@ -2,3 +2,11 @@
   background-color: #B22222;
   color: #FFD700;
 }
+h2{
+  color: maroon;
+  text-align: center;
+  padding: 30px;
+}
+table{
+   margin: auto;
+}
