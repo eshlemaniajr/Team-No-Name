@@ -42,7 +42,7 @@
     <h3>Member List</h3>
   </div>
 
-  <table class="table table-sm table-hover">
+  <table class="table table-condensed table-hover">
     <thead>
       <tr>
         <th>RadioNo</th>
@@ -72,7 +72,7 @@
     <h3>Certification List</h3>
   </div>
 
-  <table class="table table-sm table-hover">
+  <table class="table table-condensed table-hover">
     <thead>
       <tr>
         <th>Certification Name</th>
@@ -100,27 +100,28 @@
   </div>
 
 <!-- Add Member Form -->
-<div>
-  <form>
+<div class="col-xl-12 col-md-12 col-sm-12 col-xs-12">
+  <form class="form-inline">
     <div class="row">
-    <div class="form-group col-md-4">
+    <div class="form-group col-xl-3 col-md-3">
       <label for="FirstName">First Name</label>
       <input type="text" class="form-control" id="FirstName" aria-describedby="First" placeholder="First Name">
     </div>
-    <div class="form-group col-md-4">
+    <div class="form-group col-xl-3 col-md-3">
       <label for="LastName">Last Name</label>
       <input type="text" class="form-control" id="LastName" aria-describedby="Last" placeholder="Last Name">
     </div>
-    <div class="form-group col-md-4">
-      <label for="Dob">Date of Birth</label>
+    <div class="form-group col-xl-3 col-md-3">
+      <label for="Dob">DOB</label>
       <input type="date" class="form-control" id="Dob" aria-describedby="Dob" placeholder="2001-12-13">
     </div>
-    </div>
-    <div class="form-group">
-      <label for="Sab">Sex at Birth</label>
+    <div class="form-group col-xl-3 col-md-3">
+      <label for="Sab">Gender</label>
       <input type="text" class="form-control" id="Sab" aria-describedby="Sab" placeholder="M|F">
     </div>
-    <div class="form-group">
+   </div>
+    <div class="row">
+    <div class="form-group col-md-4">
       <label for="MobilePhone">Mobile Number</label>
       <input type="tel" class="form-control" id="MobilePhone" aria-describedby="MobilePhone" placeholder="Mobile Number">
     </div>
@@ -128,63 +129,69 @@
       <label for="WorkPhone">Work Number</label>
       <input type="tel" class="form-control" id="WorkPhone" aria-describedby="WorkPhone" placeholder="Work Number">
     </div>
-    <div class="form-group">
+    <div class="form-group col-md-4">
       <label for="Email">Email Address</label>
       <input type="email" class="form-control" id="Email" aria-describedby="Email" placeholder="Email Address">
     </div>
-    <div class="form-group">
+   </div>
+   <div class="row">
+    <div class="form-group col-xl-3 col-md-3">
       <label for="Street">Street Address</label>
       <input type="text" class="form-control" id="Street" aria-describedby="Street" placeholder="Street Address">
     </div>
-    <div class="form-group">
+    <div class="form-group col-xl-3 col-md-3">
       <label for="City">City</label>
       <input type="text" class="form-control" id="City" aria-describedby="City" placeholder="City">
     </div>
-    <div class="form-group">
+    <div class="form-group col-xl-3 col-md-3">
       <label for="State">State</label>
       <input type="text" class="form-control" id="State" aria-describedby="State" placeholder="State">
     </div>
-    <div class="form-group">
+    <div class="form-group col-xl-3 col-md-3">
       <label for="Zip">Zip Code</label>
       <input type="text" class="form-control" id="Zip" aria-describedby="Zip" placeholder="Zip">
     </div>
-    <div class="form-group">
+  </div>
+  <div class="row">
+    <div class="form-group col-xl-3 col-md-3">
       <label for="StationNo">Station Number</label>
       <input type="text" class="form-control" id="StationNo" aria-describedby="StationNo" placeholder="Station Number">
     </div>
-    <div class="form-group">
+    <div class="form-group col-xl-3 col-md-3">
       <label for="StationName">Station Name</label>
       <input type="text" class="form-control" id="StationName" aria-describedby="StationName" placeholder="Station Name">
     </div>
-    <div class="form-group">
+    <div class="form-group col-xl-3 col-md-3">
       <label for="Region">Region</label>
       <input type="text" class="form-control" id="Region" aria-describedby="Region" placeholder="Region">
     </div>
-    <div class="form-group">
+    <div class="form-group col-xl-3 col-md-3">
       <label for="RadioNo">Radio Number</label>
       <input type="text" class="form-control" id="RadioNo" aria-describedby="RadioNo" placeholder="Radio Number">
     </div>
-    <div class="form-group">
+   </div>
+   <div class="row">
+    <div class="form-group col-xl-3 col-md-3">
       <label for="Position">Position</label>
       <input type="text" class="form-control" id="Position" aria-describedby="Position" placeholder="Position">
     </div>
-    <div class="form-group">
-      <label for="Certification">Position</label>
-      <input type="text" class="form-control" id="Position" aria-describedby="Position" placeholder="Position">
-    </div>
-    <div class="form-group">
+    <div class="form-group col-xl-3 col-md-3">
       <label for="StartDate">Start Date</label>
       <input type="date" class="form-control" id="StartDate" aria-describedby="StartDate" placeholder="2019-01-01">
     </div>
-    <div class="form-check">
+    <div class="form-check col-xl-3 col-md-3">
       <input type="checkbox" class="form-check-input" id="ActiveCheck">
-      <label class="form-check-label" for="ActiveCheck">Active?</label>
+      <label class="form-check-label" for="ActiveCheck"> Active?</label>
     </div>
-    <div class="form-check">
+    <div class="form-check col-xl-3 col-md-3">
       <input type="checkbox" class="form-check-input" id="EmployeeCheck">
-      <label class="form-check-label" for="EmployeeCheck">Employee?</label>
+      <label class="form-check-label" for="EmployeeCheck"> Employee?</label>
     </div>
-    <button type="submit" class="btn">Create New User</button>
+  </div>
+    <div class="row">
+    <br>
+    <button type="submit" class="btn center">Create New User</button>
+  </div>
   </form>
 </div>
 </div>
