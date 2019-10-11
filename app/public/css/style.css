@@ -1,6 +1,7 @@
 .btn{
   background-color: #B22222;
   color: #FFD700;
+  font-weight: bold;
 }
 h2{
   color: maroon;
@@ -9,4 +10,26 @@ h2{
 }
 table{
    margin: auto;
+}
+a{
+  color:black;
+}
+a:hover{
+  color:white;
+}
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #B22222;
+  color: black;
+  text-align: center;
+  font-weight: bold;
 }
