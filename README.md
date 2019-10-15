@@ -2,5 +2,7 @@
 A team has no name
 
 MSIS
-ratnam19
+dev-ratnam19
 dev-kddaanen
+dev-eshlemaniajr
+dev-damomean
