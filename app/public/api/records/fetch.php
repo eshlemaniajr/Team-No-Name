@@ -15,7 +15,7 @@ if (isset($_GET['guid'])) {
   $stmt->execute();
 }
 
-$patients = $stmt->fetchAll();
+$persons = $stmt->fetchAll();
 
 // Step 3: Convert to JSON
 $json = json_encode($persons, JSON_PRETTY_PRINT);

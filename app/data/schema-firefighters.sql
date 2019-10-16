@@ -29,7 +29,9 @@ CREATE TABLE Person(
   stationNumber int(11) NOT NULL,
   startDate date NOT NULL,
   position varchar(30) NOT NULL,
-  isActive tinyint(1) NOT NULL,
+  isActive tinyint(1) DEFAULT 0,
+  email varchar(100) DEFAULT NULL,
+  isEmployee tinyint(1) DEFAULT 0,
   PRIMARY KEY (personId)
 );
 
