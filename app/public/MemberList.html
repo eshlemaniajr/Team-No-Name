@@ -27,6 +27,12 @@
         <li class="nav-item">
           <a class="nav-link" href="AddMember.html">Add Member</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="certificationDetails.html">Certification Status</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="memberCertifications.html">Member Certifications</a>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="Report.html" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
          Reports
@@ -40,33 +46,46 @@
       </ul>
     </div>
   </nav>
-
+ <main>
+   <body>
   <div>
     <!--List of Members (Change to an auto center command)-->
     <div class="mx-auto" style="width:200px;">
       <h3>Member List</h3>
     </div>
 
-    <table class="table table-sm table-hover">
+    <table id="personRecordsApp" class="table table-sm table-hover">
       <thead>
         <tr>
-          <th>RadioNo</th>
+          <th>Person GUID</th>
           <th>Position</th>
-          <th>First</th>
-          <th>Last</th>
-          <th>Certification</th>
-          <th>CellNo</th>
-          <th>Station</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Mobile Phone</th>
+          <th>Station Number</th>
+          <th>Start Date</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr v-for="p in person">
+          <td>{{p.personId}}</td>
+          <td>{{p.position}}</td>
+          <td>{{p.firstName}}</td>
+          <td>{{p.lastName}}</td>
+          <td>{{p.mobilePhone}}</td>
+          <td>{{p.stationNumber}}</td>
+          <td>{{p.startDate}}</td>
         </tr>
       </tbody>
     </table>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/af.js"></script>
+  <script src="js/waiting.app.js"></script>
+  <script src="js/record.app.js"></script>
+  <script src="js/triage.app.js"></script>
+</body>
+  <footer class="col-xl-12 col-lg-12 col-md-12 col-sm-8 col-xs-8" >
+   <div> OCFRE: <a id="af" href="https://wiseoldsayings.com/firefighter-quotes/">Website</a> | Bloomington, Monroe County, Indiana 47408 |+1(812)456-345 </div>
+   </footer>
+</main>
