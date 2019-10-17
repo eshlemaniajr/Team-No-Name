@@ -1,5 +1,5 @@
-var personRecordsApp = new Vue({
-  el: '#personRecordsApp',
+var personListApp = new Vue({
+  el: '#personListApp',
   data: {
     person: [],
     recordPerson: {},
@@ -9,12 +9,12 @@ var personRecordsApp = new Vue({
   },
   methods: {
     fetchPersons() {
-      fetch('api/records/fetch.php')
+      fetch('api/list/fetch.php')
       .then(response => response.json())
-      .then(json => { personRecordsApp.person = json })
+      .then(json => { personListApp.person = json })
     },
     handleSubmit(event) {
-      fetch('api/records/post.php', {
+      fetch('api/list/post.php', {
         method: 'POST',
         body: JSON.stringify(this.recordPerson),
         headers: {
@@ -22,7 +22,7 @@ var personRecordsApp = new Vue({
         }
       })
       .then( response => response.json() )
-      .then( json => {personRecordsApp.person.push( json[0] )})
+      .then( json => {personListApp.person.push( json[0] )})
       .catch( err => {
         console.error('RECORD POST ERROR:');
         console.error(err);
