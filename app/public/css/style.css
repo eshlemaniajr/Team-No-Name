@@ -8,8 +8,12 @@ h2{
   text-align: center;
   padding: 30px;
 }
+h3{
+  color: maroon;
+  text-align: center;
+}
 table{
-   margin: auto;
+  margin: auto;
 }
 a{
   color:black;
