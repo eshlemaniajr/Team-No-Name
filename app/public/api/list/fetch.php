@@ -5,8 +5,8 @@ $db = DbConnection::getConnection();
 
 // Step 2: Create & run the query
 
-  $stmt = $db->prepare('SELECT * FROM Person');
-  $stmt->execute();
+$stmt = $db->prepare('SELECT * FROM Person');
+$stmt->execute();
 
 $persons = $stmt->fetchAll();
 

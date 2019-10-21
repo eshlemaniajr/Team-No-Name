@@ -1,4 +1,4 @@
-var certificationRecordsApp = new Vue({
+var certifDetailsApp = new Vue({
   el: '#certifDetailsApp',
   data: {
     certifications: [],
