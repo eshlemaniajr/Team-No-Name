@@ -1,9 +1,6 @@
 <?php
 
 // Step 0: Validation
-use Ramsey\Uuid\Uuid;
-$guid = Uuid::uuid4()->toString(); // i.e. 25769c6c-d34d-4bfe-ba98-e0ee856f3e7a
-
 // Step 1: Get a datase connection from our help class
 $db = DbConnection::getConnection();
 
@@ -15,7 +12,7 @@ $stmt = $db->prepare(
 );
 
 $stmt->execute([
-  $guid,
+  $_POST['personId'],
   $_POST['firstName'],
   $_POST['lastName'],
   $_POST['gender'],
