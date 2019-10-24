@@ -1,28 +1,25 @@
-var personRecordsApp = new Vue({
+var certifDetailsApp = new Vue({
   el: '#certifDetailsApp',
   data: {
-    person: [],
-    recordPerson: {},
-    filter: {
-      sab: ''
-    }
+    certifications: [],
+    recordCerti: {}
   },
   methods: {
-    fetchPersons() {
-      fetch('dummy.php')
+    fetchCertification() {
+      fetch('api/certification/fetchCerti.php')
       .then(response => response.json())
-      .then(json => { certifDetailsApp.person = json })
+      .then(json => { certifDetailsApp.certifications = json })
     },
     handleSubmit(event) {
-      fetch('api/records/post.php', {
+      fetch('api/certification/post.php', {
         method: 'POST',
-        body: JSON.stringify(this.recordPerson),
+        body: JSON.stringify(this.recordCerti),
         headers: {
           "Content-Type": "application/json; charset=utf-8"
         }
       })
       .then( response => response.json() )
-      .then( json => {personRecordsApp.person.push( json[0] )})
+      .then( json => {certifDetailsApp.certifications.push( json[0] )})
       .catch( err => {
         console.error('RECORD POST ERROR:');
         console.error(err);
@@ -30,19 +27,18 @@ var personRecordsApp = new Vue({
       this.handleReset();
     },
     handleReset() {
-      this.recordPerson = {
-        firstName: '',
-        lastName: '',
-        dob: '',
-        gender: ''
+      this.recordCerti = {
+        certificationName: '',
+        certifyingAgency: '',
+        expirationDate: ''
       }
     },
-    handleRowClick(person) {
-      personTriageApp.person = person;
+    handleRowClick(certification) {
+      certificationTriageApp.certification = certification;
     }
   }, // end methods
   created() {
     this.handleReset();
-    this.fetchPersons();
+    this.fetchCertification();
   }
 });

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="css\style.css">
-  <title>Member List</title>
+  <title>Add New Member</title>
 </head>
 <body>
   <!-- Navigation Bar -->
@@ -52,47 +52,51 @@
   </nav>
   <main>
     <body>
+
       <div>
-        <!--List of Members (Change to an auto center command)-->
+        <!-- Add Certification Heading (Change to an auto center command)-->
         <div class="mx-auto" style="width:200px;">
-          <h3>Member List</h3>
+          <h3>Add Certification</h3>
         </div>
 
-        <table id="personListApp" class="table table-sm table-hover">
-          <thead>
-            <tr>
-              <th>Person GUID</th>
-              <th>Position</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Mobile Phone</th>
-              <th>Station Number</th>
-              <th>Start Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="p in person">
-              <td>{{p.personId}}</td>
-              <td>{{p.position}}</td>
-              <td>{{p.firstName}}</td>
-              <td>{{p.lastName}}</td>
-              <td>{{p.mobilePhone}}</td>
-              <td>{{p.stationNumber}}</td>
-              <td>{{p.startDate}}</td>
-            </tr>
-          </tbody>
-        </table>
+        <!-- Add Certification Form -->
+        <div class="col-xl-12 col-md-12 col-sm-12 col-xs-12">
+          <div id="certifDetailsApp">
+            <form @submit.prevent="handleSubmit" class="form-inline">
+              <div class="row col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-group col-xl-12 col-md-12 col-sm-12 col-xs-12">
+                  <label for="certificationName">Certification Name</label>
+                  <input type="text" class="form-control" id="certificationName" aria-describedby="Certi" placeholder="Certification Name" v-model="recordCerti.certificationName">
+                </div>
+                <div class="form-group col-xl-12 col-md-12 col-sm-12 col-xs-12">
+                  <label for="certifyingAgency">Certifying Agency</label>
+                  <input type="text" class="form-control" id="certifyingAgency" aria-describedby="Agency" placeholder="Certifying Agency" v-model="recordCerti.certifyingAgency">
+                </div>
+                <div class="form-group col-xl-12 col-md-12 col-sm-12 col-xs-12">
+                  <label for="expirationDate">Expiration Date</label>
+                  <input type="date" class="form-control" id="dob" aria-describedby="Expiration" placeholder="2001-12-13" v-model="recordCerti.expirationDate">
+                </div>
+            </div>
+            <div class="row">
+              <br>
+              <button type="submit" class="btn center">Create New Certification</button>
+            </div>
+          </form>
+        </div>
       </div>
+
+      <footer class="col-xl-12 col-lg-12 col-md-12 col-sm-8 col-xs-8" >
+        <div> OCFRE: <a id="af" href="https://wiseoldsayings.com/firefighter-quotes/">Website</a> | Bloomington,Oconee County, Georgia 47408 |+1(812)456-345 </div>
+      </footer>
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/af.js"></script>
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-      <script src="js/waiting.app.js"></script>
       <script src="js/list.app.js"></script>
+      <script src="js/waiting.app.js"></script>
       <script src="js/triage.app.js"></script>
-      <footer class="col-xl-12 col-lg-12 col-md-12 col-sm-8 col-xs-8" >
-        <div> OCFRE: <a id="af" href="https://wiseoldsayings.com/firefighter-quotes/">Website</a> | Bloomington, Monroe County, Indiana 47408 |+1(812)456-345 </div>
-      </footer>
-  </main>
-</body>
-</html>
+      <script src="js/certdet.app.js"></script>
+    </main>
+  </body>
+  </html>

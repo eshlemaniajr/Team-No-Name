@@ -30,6 +30,9 @@
           <a class="nav-link" href="AddMember.html">Add Member</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="AddCertification.html">Add Certification</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="certificationDetails.html">Certification Status</a>
         </li>
         <li class="nav-item">
@@ -54,22 +57,19 @@
       <h3>Certification List</h3>
     </div>
 
-    <table id="personListApp" class="table table-sm table-hover">
+    <table id="certifDetailsApp" class="table table-sm table-hover">
       <thead>
         <tr>
           <th>Certification Name</th>
           <th>Certification Agency</th>
-          <th>Description</th>
           <th>Standard Expiry</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="p in person">
-          <td>{{p.firstName}}</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr v-for="c in certifications">
+          <td>{{c.certificationName}}</td>
+          <td>{{c.certifyingAgency}}</td>
+          <td>{{c.expirationDate}}</td>
         </tr>
       </tbody>
     </table>
@@ -82,8 +82,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="js/waiting.app.js"></script>
-<script src="js/list.app.js"></script>
-<script src="js/triage.app.js"></script>
+<script src="js/certdet.app.js"></script>
 </body>
 </html>
