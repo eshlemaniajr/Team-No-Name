@@ -6,19 +6,19 @@ $db = DbConnection::getConnection();
 
 // Step 2: Create & run the query
 $stmt = $db->prepare(
-  'INSERT INTO Certification
-    (certificationName, certifyingAgency, expiryPeriod)
-  VALUES (?, ?, ?);'
+  'UPDATE Certification
+    SET certificationName=?, certifyingAgency=?, expiryPeriod=?
+    WHERE certificationId = ?'
 );
+
 $stmt->execute([
   $_POST['certificationName'],
   $_POST['certifyingAgency'],
-  $_POST['expiryPeriod']
+  $_POST['expiryPeriod'],
+  $_POST['certificationId']
 ]);
-
-$CertificationId = $db->lastInsertID();
 
 // Step 4: Output
 header('HTTP/1.1 303 See Other');
 header('Content-Type: application/json');
-header('Location: ../certification/?certificationId=' . $CertificationId);
+header('Location: ../certification/');
