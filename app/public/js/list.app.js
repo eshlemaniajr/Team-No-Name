@@ -2,16 +2,32 @@ var personListApp = new Vue({
   el: '#personListApp',
   data: {
     person: [],
+    radios: [],
+    stations: [],
+    assignedMember:{},
+    selectedPerson: {},
     recordPerson: {},
     filter: {
-      sab: ''
-    }
+    radioNumber: '',
+    stationNumber: ''
+   }
   },
   methods: {
     fetchPersons() {
-      fetch('api/list/fetch.php')
+      fetch('api/list/index.php')
       .then(response => response.json())
       .then(json => { personListApp.person = json })
+    },
+    fetchRadios() {
+      fetch('api/reports/radio.php')
+      .then(response => response.json())
+      .then(json => { personListApp.radios = json })
+      .then(console.log('radios'))
+    },
+    fetchStations() {
+      fetch('api/reports/station.php')
+      .then(response => response.json())
+      .then(json => { personListApp.stations = json })
     },
     handleSubmit(event) {
       fetch('api/list/post.php', {
@@ -34,15 +50,67 @@ var personListApp = new Vue({
         firstName: '',
         lastName: '',
         dob: '',
-        gender: ''
+        gender: '',
+        mobilePhone: '',
+        workPhone: '',
+        email: '',
+        street: '',
+        region: '',
+        state: '',
+        city: '',
+        zip: '',
+        stationNumber: '',
+        radioNumber: '',
+        position: '',
+        startDate: '',
+        isActive: '',
+        isEmployee: ''
       }
     },
     handleRowClick(person) {
-      personTriageApp.person = person;
+      personListApp.selectedPerson = person;
+    },
+    handleEdit(event) {
+      fetch('api/list/edit.php', {
+        method: 'POST',
+        body: JSON.stringify(this.selectedPerson),
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        }
+      })
+      .then( response => response.json() )
+      .then( json => {personListApp.person.push( json[0] )})
+      .then(this.fetchPersons())
+      .catch( err => {
+        console.error('RECORD EDIT ERROR:');
+        console.error(err);
+      });
+      this.handleReset();
+      this.fetchPersons();
+    },
+    handleDelete(event) {
+      fetch('api/list/delete.php', {
+        method: 'POST',
+        body: JSON.stringify(this.selectedPerson),
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        }
+      })
+      .then( response => response.json() )
+      .then(json => { personListApp.person = json })
+      .then(this.fetchPersons())
+      .catch( err => {
+        console.error('RECORD DELETE ERROR:');
+        console.error(err);
+      });
+      this.handleReset();
+      this.fetchPersons();
     }
   }, // end methods
   created() {
     this.handleReset();
     this.fetchPersons();
+    this.fetchRadios();
+    this.fetchStations();
   }
 });

@@ -6,15 +6,16 @@ $db = DbConnection::getConnection();
 
 // Step 2: Create & run the query
 $stmt = $db->prepare(
-  'INSERT INTO CertificationStatus
-    (personId, certificationId, startDate, expirationDate)
-  VALUES (?, ?, ?, ?)'
+  'UPDATE CertificationStatus
+   SET startDate=?, expirationDate=?
+   WHERE certificationId = ? AND personId=?'
 );
+
 $stmt->execute([
-  $_POST['personId'],
-  $_POST['certificationId'],
   $_POST['startDate'],
-  $_POST['expirationDate']
+  $_POST['expirationDate'],
+  $_POST['certificationId'],
+  $_POST['personId']
 ]);
 
 // Step 4: Output
