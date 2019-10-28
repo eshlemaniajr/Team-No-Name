@@ -6,9 +6,9 @@ $db = DbConnection::getConnection();
 
 // Step 2: Create & run the query
 $stmt = $db->prepare(
-  'INSERT INTO Person
-    (firstName, lastName, gender, dob, email, mobilePhone, workPhone, street, city, state, zip, region, stationNumber, radioNumber, position, startDate, isActive, isEmployee)
-  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+  'UPDATE Person
+    SET firstName =?, lastName =?, gender=?, dob=?, email=?, mobilePhone=?, workPhone=?, street=?, city=?, state=?, zip=?, region=?, stationNumber=?, radioNumber=?, position=?, startDate=?, isActive=?, isEmployee=?
+    WHERE personId = ?'
 );
 
 $stmt->execute([
@@ -29,12 +29,13 @@ $stmt->execute([
   $_POST['position'],
   $_POST['startDate'],
   $_POST['isActive'],
-  $_POST['isEmployee']
+  $_POST['isEmployee'],
+  $_POST['personId']
 ]);
 
-$personId = $db->lastInsertID();
+
 
 // Step 4: Output
 header('HTTP/1.1 303 See Other');
 header('Content-Type: application/json');
-header('Location: ../list/?personId=' . $personId);
+header('Location: ../list/');
