@@ -10,7 +10,7 @@
 <body>
   <!-- Navigation Bar -->
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #B22222">
-    <a class="navbar-brand" href="#">Navigation</a>
+    <a class="navbar-brand" href="#">OCFR</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -33,6 +33,9 @@
           <a class="nav-link" href="AddCertification.html">Add Certification</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="AssignCertification.html">Assign Certification</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="certificationDetails.html">Certification Status</a>
         </li>
         <li class="nav-item">
@@ -45,43 +48,75 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="CertificationList.html">Certifications</a>
             <a class="dropdown-item" href="MemberList.html">Member Summary</a>
+            <a class="dropdown-item" href="expiredReport.html">Members - Expired Certifications</a>
+            <a class="dropdown-item" href="stationReport.html">Members - Station & Radio Number</a>
           </div>
         </li>
       </ul>
     </div>
   </nav>
-   <main>
-   <body>
-    <!--List of Certifications-->
-    <div class="mx-auto">
-      <h3>Certification List</h3>
+  <main>
+    <body>
+      <!--List of Certifications-->
+      <div class="mx-auto">
+        <h3>Certification List</h3>
+      </div>
+      <div id="certifDetailsApp" class="row">
+      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+        <form style="padding:0px">
+          <div>
+            <div class="form-group">
+              <div>
+                <label for="certificationName">Certification Name</label>
+                <input type="text" class="form-control" id="certificationName" aria-describedby="Certi" placeholder="Name of Certification" v-model="recordCerti.certificationName">
+              </div>
+              <div>
+                <label for="certifyingAgency">Certifying Agency</label>
+                <input type="text" class="form-control" id="certifyingAgency" aria-describedby="Agency" placeholder="Certifying Agency" v-model="recordCerti.certifyingAgency">
+              </div>
+              <div>
+                <label for="expiryPeriod">Expiry Period</label>
+                <input type="number" class="form-control" id="expiryPeriod" aria-describedby="Expiration" placeholder="Years  " v-model="recordCerti.expiryPeriod">
+              </div>
+            </div>
+          </div>
+        </form>
+        <div style="padding:5px;" >
+          <input  type="submit" class="btn center" v-on:click="handleEdit" value="Save Edited Certification">
+        </div>
+        <div style="padding:5px;">
+          <input  type="submit" class="btn center" v-on:click="handleDelete" value="Delete Certification">
+        </div>
+      </div>
+      <div  class="col-lg-7 col-md-7 col-sm-5 col-xs-5">
+      <table class="table table-sm table-hover">
+        <thead>
+          <tr>
+            <th>Certification Id</th>
+            <th>Certification Name</th>
+            <th>Certification Agency</th>
+            <th>Standard Expiry Period</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="c in certifications" @click=handleRowClick(c)>
+            <td>{{c.certificationId}}</td>
+            <td>{{c.certificationName}}</td>
+            <td>{{c.certifyingAgency}}</td>
+            <td>{{c.expiryPeriod}} years</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
-    <table id="certifDetailsApp" class="table table-sm table-hover">
-      <thead>
-        <tr>
-          <th>Certification Name</th>
-          <th>Certification Agency</th>
-          <th>Standard Expiry</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="c in certifications">
-          <td>{{c.certificationName}}</td>
-          <td>{{c.certifyingAgency}}</td>
-          <td>{{c.expirationDate}}</td>
-        </tr>
-      </tbody>
-    </table>
-    
-  <footer class="col-xl-12 col-lg-12 col-md-12 col-sm-8 col-xs-8" >
-   <div> OCFRE: <a id="af" href="https://wiseoldsayings.com/firefighter-quotes/">Website</a> | Bloomington, Monroe County, Indiana 47408 |+1(812)456-345 </div>
-   </footer>
-</main>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="js/certdet.app.js"></script>
-</body>
-</html>
+    </div>
+      <footer class="col-xl-12 col-lg-12 col-md-12 col-sm-8 col-xs-8" >
+        <div> OCFR: <a id="af" href="https://wiseoldsayings.com/firefighter-quotes/">Website</a> | Oconee County, Georgia 30605 |+1(707)456-3451 </div>
+      </footer>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/certdet.app.js"></script>
+  </body>
+  </html>

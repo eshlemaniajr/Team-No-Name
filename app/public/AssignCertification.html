@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="css\style.css">
-  <title>Add New Certification</title>
+  <title>Assign Certification</title>
 </head>
 <body>
   <!-- Navigation Bar -->
@@ -57,70 +57,100 @@
   </nav>
   <main>
     <body>
-      <!-- Add Certification Heading (Change to an auto center command)-->
-      <div id="certifDetailsApp" class="row">
-        <div class="col-xl-5 col-lg-5 col-md-5 col-sm-6 col-xs-6">
-          <div class="mx-auto">
-            <h3>Add Certification</h3>
-          </div>
-
-          <!-- Add Certification Form -->
-          <div class="row" style="margin:10px">
-            <div class="container-fluid">
-              <form @submit.prevent="handleSubmit" style="padding:0px">
-                <div>
-                  <div class="form-group">
-                    <div>
-                      <label for="certificationName">Certification Name</label>
-                      <input type="text" class="form-control" id="certificationName" aria-describedby="Certi" placeholder="Name of Certification" v-model="recordCerti.certificationName">
-                    </div>
-                    <div>
-                      <label for="certifyingAgency">Certifying Agency</label>
-                      <input type="text" class="form-control" id="certifyingAgency" aria-describedby="Agency" placeholder="Certifying Agency" v-model="recordCerti.certifyingAgency">
-                    </div>
-                    <div>
-                      <label for="expiryPeriod">Expiry Period</label>
-                      <input type="number" class="form-control" id="expiryPeriod" aria-describedby="Expiration" placeholder="Years  " v-model="recordCerti.expiryPeriod">
-                    </div>
-                  </div>
-                  <div style="padding:5px;">
-                    <button type="submit" class="btn center btn-danger">Create New Certification</button>
-                  </div>
-                </div>
-              </form>
-              <div style="padding:5px;" >
-                <input  type="submit" class="btn center btn-danger" v-on:click="handleEdit" value="Save Edited Certification">
-              </div>
-              <div style="padding:5px;">
-                <input  type="submit" class="btn center btn-danger" v-on:click="handleDelete" value="Delete Certification">
-              </div>
+      <h2>Assign Member Certification</h2>
+      <div id="memberCertificationsApp"  class="row">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+      <form @submit.prevent="handleSubmit">
+        <div class="form-group">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text">Choose the member:</label>
             </div>
+            <select v-model="assignedCerti.personId">
+              <option v-for="p in persons" v-bind:value="p.personId">
+                {{p.personId}} | {{p.firstName}} {{p.lastName}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text">Choose the certification:</label>
+            </div>
+            <select v-model="assignedCerti.certificationId">
+              <option v-for="c in certifications" v-bind:value="c.certificationId">
+                {{c.certificationId}} | {{c.certificationName}} - {{c.expiryPeriod}} years
+              </option>
+            </select>
           </div>
         </div>
 
-        <div>
-          <div>
-            <h3>Certifications</h3>
-          </div>
-
-          <table class="table table-sm table-hover">
-            <thead>
-              <tr>
-                <th>Certification Name</th>
-                <th>Certification Agency</th>
-                <th>Standard Expiry Period</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="c in certifications" @click="handleRowClick(c)">
-                <td>{{c.certificationName}}</td>
-                <td>{{c.certifyingAgency}}</td>
-                <td>{{c.expiryPeriod}} years</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="form-group">
+          <label>Start Date: </label>
+          <input type="date" v-model="assignedCerti.startDate">
         </div>
+
+        <div class="form-group">
+          <label>Expiration Date: </label>
+          <input type="date" v-model="assignedCerti.expirationDate">
+        </div>
+
+        <div class="form-group-row">
+          <button type="submit" class="btn">Assign Certification</button>
+        </div>
+    </form>
+   </div>
+
+    <div>
+    <table class="table table-sm table-hover">
+      <thead>
+        <tr>
+          <th>Certification ID</th>
+          <th>Person ID</th>
+          <th>Issued Date</th>
+          <th>Expiration Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="m in membercertifications" @click="handleRowClick(m)">
+          <td>{{m.certificationId}}</td>
+          <td>{{m.personId}}</td>
+          <td>{{m.startDate}}</td>
+          <td>{{m.expirationDate}}</td>
+        </tr>
+      </tbody>
+    </table>
+<center>
+
+      <div class="form-group">
+            <label for="Member">Member Id:</label>
+            <input id="Member" type="text" disabled v-model="selectedAssignCerti.personId">
       </div>
+
+      <div class="form-group">
+            <label for="Certi">Certification Id:</label>
+            <input id="Certi"  type="text" disabled v-model="selectedAssignCerti.certificationId">
+      </div>
+      <div class="form-group">
+        <label>Start Date: </label>
+        <input type="date" v-model="selectedAssignCerti.startDate">
+      </div>
+
+      <div class="form-group">
+        <label>Expiration Date: </label>
+        <input type="date" v-model="selectedAssignCerti.expirationDate">
+      </div>
+
+      <div style="padding:5px;" class="form-group-row">
+        <input type="submit" @click="handleEdit" class="btn" value="Update certification change">
+      </div>
+      <div style="padding-bottom:5px;" class="form-group-row">
+        <input type="submit" @click="handleDelete" class="btn" value="Delete certification">
+      </div>
+  </div>
+</center>
+</div>
       <footer class="col-xl-12 col-lg-12 col-md-12 col-sm-8 col-xs-8" >
         <div> OCFR: <a id="af" href="https://wiseoldsayings.com/firefighter-quotes/">Website</a> | Oconee County, Georgia 30605 |+1(707)456-3451 </div>
       </footer>
@@ -128,7 +158,7 @@
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-      <script src="js/certdet.app.js"></script>
-    </main>
-  </body>
+      <script src="js/membercertif.app.js"></script>
+    </body>
+  </main>
   </html>
