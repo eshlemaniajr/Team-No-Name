@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="css\style.css">
+  <title>Assign Certification</title>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #B22222">
+    <a class="navbar-brand" href="#">OCFR</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="MemberList.html">Member List</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="CertificationList.html">Certification List</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="AddMember.html">Add Member</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="AddCertification.html">Add Certification</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="AssignCertification.html">Assign Certification</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="certificationDetails.html">Certification Status</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="memberCertifications.html">Member Certifications</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Reports
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="CertificationList.html">Certifications</a>
+            <a class="dropdown-item" href="MemberList.html">Member Summary</a>
+            <a class="dropdown-item" href="expiredReport.html">Members- Expired Certifications</a>
+            <a class="dropdown-item" href="stationReport.html">Members - Station & Radio Number</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <main>
+    <body>
+      <h2>Assign Member Certification</h2>
+      <div id="memberCertificationsApp"  class="row">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+      <form @submit.prevent="handleSubmit">
+        <div class="form-group">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text">Choose the member:</label>
+            </div>
+            <select v-model="assignedCerti.personId">
+              <option v-for="p in persons" v-bind:value="p.personId">
+                {{p.personId}} | {{p.firstName}} {{p.lastName}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text">Choose the certification:</label>
+            </div>
+            <select v-model="assignedCerti.certificationId">
+              <option v-for="c in certifications" v-bind:value="c.certificationId">
+                {{c.certificationId}} | {{c.certificationName}} - {{c.expiryPeriod}} years
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Start Date: </label>
+          <input type="date" v-model="assignedCerti.startDate">
+        </div>
+
+        <div class="form-group">
+          <label>Expiration Date: </label>
+          <input type="date" v-model="assignedCerti.expirationDate">
+        </div>
+
+        <div class="form-group-row">
+          <button type="submit" class="btn">Assign Certification</button>
+        </div>
+    </form>
+   </div>
+
+    <div>
+    <table class="table table-sm table-hover">
+      <thead>
+        <tr>
+          <th>Certification ID</th>
+          <th>Person ID</th>
+          <th>Issued Date</th>
+          <th>Expiration Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="m in membercertifications" @click="handleRowClick(m)">
+          <td>{{m.certificationId}}</td>
+          <td>{{m.personId}}</td>
+          <td>{{m.startDate}}</td>
+          <td>{{m.expirationDate}}</td>
+        </tr>
+      </tbody>
+    </table>
+<center>
+
+      <div class="form-group">
+            <label for="Member">Member Id:</label>
+            <input id="Member" type="text" disabled v-model="selectedAssignCerti.personId">
+      </div>
+
+      <div class="form-group">
+            <label for="Certi">Certification Id:</label>
+            <input id="Certi"  type="text" disabled v-model="selectedAssignCerti.certificationId">
+      </div>
+      <div class="form-group">
+        <label>Start Date: </label>
+        <input type="date" v-model="selectedAssignCerti.startDate">
+      </div>
+
+      <div class="form-group">
+        <label>Expiration Date: </label>
+        <input type="date" v-model="selectedAssignCerti.expirationDate">
+      </div>
+
+      <div style="padding:5px;" class="form-group-row">
+        <input type="submit" @click="handleEdit" class="btn" value="Update certification change">
+      </div>
+      <div style="padding-bottom:5px;" class="form-group-row">
+        <input type="submit" @click="handleDelete" class="btn" value="Delete certification">
+      </div>
+  </div>
+</center>
+</div>
+      <footer class="col-xl-12 col-lg-12 col-md-12 col-sm-8 col-xs-8" >
+        <div> OCFR: <a id="af" href="https://wiseoldsayings.com/firefighter-quotes/">Website</a> | Oconee County, Georgia 30605 |+1(707)456-3451 </div>
+      </footer>
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      <script src="js/membercertif.app.js"></script>
+    </body>
+  </main>
+  </html>
