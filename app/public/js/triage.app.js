@@ -31,14 +31,11 @@ var personTriageApp = new Vue({
     },
     handleReset() {
       this.person = {
-        patientGuid: '',
+        personId: '',
         firstName: '',
         lastName: '',
         dob: '',
-        gender: '',
-        visitDescription: '',
-        // visitDateUtc
-        priority: 'low'
+        gender: ''
       }
     }
   },
