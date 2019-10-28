@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="css\style.css">
+  <title>Members - Expired Certifications</title>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #B22222">
+    <a class="navbar-brand" href="#">OCFR</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="MemberList.html">Member List</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="CertificationList.html">Certification List</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="AddMember.html">Add Member</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="AddCertification.html">Add Certification</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="AssignCertification.html">Assign Certification</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="certificationDetails.html">Certification Status</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="memberCertifications.html">Member Certifications</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Reports
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="CertificationList.html">Certifications</a>
+            <a class="dropdown-item" href="MemberList.html">Member Summary</a>
+            <a class="dropdown-item" href="expiredReport.html">Members- Expired Certifications</a>
+            <a class="dropdown-item" href="stationReport.html">Members - Station & Radio Number</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <main>
+    <body>
+      <div class="mx-auto">
+        <h3>Report : Members with Expired Certifications</h3>
+      </div>
+      <div id="memberCombinationApp">
+        <div class="filter">
+          <label>Choose the certification:</label>
+          <select v-model="filter.certificationName">
+            <option value="">(all)</option>
+            <option v-for="c in certifications" v-bind:value="c.certificationName">
+              {{c.certificationName}}
+            </option>
+          </select>
+        </div>
+        <div>
+          <button onclick="exportTableToCSV('MembersWithExpiredCertification.csv')">Export Results to CSV</button>
+        </div>
+        <center>
+        <div class="row">
+          <div class="col-xl-9 col-lg-9 col-md-9 col-sm-8 col-xs-8">
+          <br>
+          <table align="center" class="table table-sm table-bordered ">
+            <caption v-for="c in certifications"v-if="c.certificationName==filter.certificationName">
+              Members having the expired {{c.certificationName}} certification
+            </caption>
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col" v-if="filter.certificationName==''">Certification</th>
+                <th scope="col">Member</th>
+                <th scope="col">Position</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Station number</th>
+                <th scope="col">Radio number</th>
+                <th scope="col">City</th>
+                <th scope="col">Mobile</th>
+                <th scope="col">Certificate Issued/Renewed On</th>
+                <th scope="col">Certification Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="c in membercombination"
+              v-if="(filter.certificationName=='' || c.certificationName==filter.certificationName && expiredDate(c))">
+              <td v-if="filter.certificationName==''">{{c.certificationName}}</td>
+              <td>{{c.firstName}} {{c.lastName}}</td>
+              <td>{{c.position}}</td>
+              <td>{{c.gender}}</td>
+              <td>{{c.stationNumber}}</td>
+              <td>{{c.radioNumber}}</td>
+              <td>{{c.city}}</td>
+              <td>{{c.mobilePhone}}</td>
+              <td>{{c.issuedDate}}</td>
+              <td v-if="expiredDate(c)==false">Current</td>
+              <td v-if="expiredDate(c)==true">Expired</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </center>
+    </div>
+    <div class="code">
+      Source code (Export to CSV) from: <a href="https://www.codexworld.com/export-html-table-data-to-csv-using-javascript/">CodexWorld</a>
+      Date function from: <a href="https://stackoverflow.com/questions/29494528/how-to-compare-only-date-in-moment-js">StackOverflow</a>
+    </div>
+  <footer class="col-xl-12 col-lg-12 col-md-12 col-sm-8 col-xs-8" >
+    <div> OCFR: <a id="af" href="https://wiseoldsayings.com/firefighter-quotes/">Website</a> | Oconee County, Georgia 30605 |+1(707)456-3451 </div>
+  </footer>
+</main>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="js/membercombo.app.js"></script>
+<script src="js/reportsCSV.app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+</body>
+</html>

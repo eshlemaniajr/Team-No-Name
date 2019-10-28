@@ -8,12 +8,19 @@ h2{
   text-align: center;
   padding: 30px;
 }
+.code{
+  color: beige;
+}
 h3{
   color: maroon;
   text-align: center;
 }
-table{
-  margin: auto;
+form{
+  padding: 15px;
+  margin: 0 auto;
+}
+.filter{
+  margin:20px;
 }
 a{
   color:black;
@@ -36,4 +43,15 @@ footer {
   color: black;
   text-align: center;
   font-weight: bold;
+}
+
+.navbar-nav{
+  color: rgb(255,255,255);
+}
+.nav-link{
+  color: rgb(255,255,255);
+}
+.inner {
+    width: 600px;
+    overflow: hidden; /* will contain if #first is longer than #second */
 }
